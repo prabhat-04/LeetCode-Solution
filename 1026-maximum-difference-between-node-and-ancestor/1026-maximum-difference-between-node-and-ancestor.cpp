@@ -24,6 +24,8 @@ class Solution {
 
 public:
     int maxAncestorDiff(TreeNode* root) {
+        ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
         int ans =INT_MIN;
         traversal(root,INT_MAX,INT_MIN,ans);
         return ans;
