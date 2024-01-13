@@ -7,15 +7,10 @@ public:
         }
         int ans=0;
         for(int i=0;i<t.size();i++){
-            if(mp.find(t[i])==mp.end())
+            if(mp.find(t[i])==mp.end() || mp[t[i]]<=0)
                 ans++;
             else{
-                if(mp[t[i]]>0){
-                    mp[t[i]]--;
-                }
-                else{
-                    ans++;
-                }
+                mp[t[i]]--;
             }
         }
         return ans;
