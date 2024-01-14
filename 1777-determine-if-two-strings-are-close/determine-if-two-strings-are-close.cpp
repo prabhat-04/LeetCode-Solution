@@ -4,15 +4,14 @@ public:
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
         cout.tie(nullptr);
+        if(word1.size()!=word2.size())
+            return false;
         vector<int> freq1(26, 0);
         vector<int> freq2(26, 0);
 
-        for (char ch : word1) {
-            freq1[ch - 'a']++;
-        }
-
-        for (char ch : word2) {
-            freq2[ch - 'a']++;
+        for(int i=0;i<word1.size();i++){
+            freq1[word1[i]-'a']++;
+            freq2[word2[i]-'a']++;
         }
 
         for (int i = 0; i < 26; i++) {
