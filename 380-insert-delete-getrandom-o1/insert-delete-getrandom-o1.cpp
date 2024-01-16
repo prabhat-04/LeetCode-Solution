@@ -4,6 +4,7 @@ class RandomizedSet {
 public:
    
     RandomizedSet() {
+        ios_base::sync_with_stdio(false);
     }
 
     bool search(int val){
