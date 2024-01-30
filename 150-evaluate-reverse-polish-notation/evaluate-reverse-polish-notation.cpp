@@ -1,6 +1,9 @@
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
         stack<int> operatorStack;
         int l = tokens.size();
     
