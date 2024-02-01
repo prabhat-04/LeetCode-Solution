@@ -1,6 +1,9 @@
 class Solution {
 public:
     vector<vector<int>> divideArray(vector<int>& nums, int k) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
         if(nums.size()%3!=0)
             return{};
         int n = nums.size();
