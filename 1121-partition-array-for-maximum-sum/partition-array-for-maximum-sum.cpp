@@ -1,6 +1,9 @@
 class Solution {
 public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
         int n = arr.size();
         vector<int> dp(n + 1, 0);
         int sub_ans = 0, mx = 0;
