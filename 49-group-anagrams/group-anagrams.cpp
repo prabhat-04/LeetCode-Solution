@@ -17,6 +17,10 @@ public:
     }
 
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+
         vector<vector<string>> result;
         unordered_map<string, vector<string>> groups;
 
