@@ -1,9 +1,9 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        cout.tie(nullptr);
+        // ios::sync_with_stdio(false);
+        // cin.tie(nullptr);
+        // cout.tie(nullptr);
         unordered_map<int,int> mp;
         for(int x:nums){
             mp[x]++;
