@@ -15,7 +15,7 @@ public:
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
         cout.tie(nullptr);
-        for(auto word:words){
+        for(string word:words){
             if(palindrome(word))
                 return word;
         }
