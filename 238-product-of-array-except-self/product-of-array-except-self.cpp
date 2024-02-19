@@ -1,9 +1,6 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        cout.tie(nullptr);
         int n = nums.size();
         vector<int> pre(n),post(n),ans(n);
         pre[0]=nums[0];
