@@ -1,6 +1,9 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
         if(trust.size()==0 && n==1) return 1;
         pair<int,int> p={-1,INT_MIN};
         unordered_map<int,int> mp1,mp2;
