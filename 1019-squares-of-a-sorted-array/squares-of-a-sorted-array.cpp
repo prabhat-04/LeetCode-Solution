@@ -8,11 +8,6 @@ public:
                 break;
             }
         }
-        if(x==0 ){
-            for(int i=0;i<nums.size();i++)
-                nums[i]*=nums[i];
-             return nums;
-        }
         
         int y;
         if(x==-1) y=nums.size()-1;
