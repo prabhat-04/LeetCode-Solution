@@ -1,6 +1,8 @@
 class Solution {
 public:
     int maximumPopulation(vector<vector<int>>& logs) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
         vector<int> popu(101,0);
         for(auto x:logs){
             popu[x[0]-1950]++;
