@@ -11,8 +11,7 @@ public:
     }
     
     void pop() {
-        if(st.empty()) return;
-        // cout<<st.top()<<" "<<temp.top()<<endl;
+        // if(st.empty()) return;
         if(st.top()==temp.top()){
             temp.pop();
         }
@@ -20,12 +19,12 @@ public:
     }
     
     int top() {
-        if(st.empty()) return -1;
+        // if(st.empty()) return -1;
         return st.top();
     }
     
     int getMin() {
-        if(temp.empty()) return -1;
+        // if(temp.empty()) return -1;
         return temp.top();
     }
 };
