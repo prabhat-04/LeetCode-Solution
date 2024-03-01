@@ -24,13 +24,12 @@ public:
 
     bool isPalindrome(ListNode* head) {
         if(head==NULL || head->next==NULL) return true;
-        ListNode *slow=head,*fast=head,*prev=NULL;
+        ListNode *slow=head,*fast=head;
         while(fast!=NULL && fast->next!=NULL){
-            prev=slow;
             slow=slow->next;
             fast=fast->next->next;
         }
-        ListNode* hh=reverse(prev->next);
+        ListNode* hh=reverse(slow);
         // prev->next=NULL;
         // cout<<hh->val;
         while(head!=NULL && hh!=NULL){
