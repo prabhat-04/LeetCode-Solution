@@ -18,16 +18,28 @@ public:
         while(curr!=NULL){
             sum+=curr->val;
             if(sum==0){
-                head=curr->next;
+                ListNode *temp=curr,*y=head;
+                curr=curr->next;
+                temp->next=NULL;
+                // while(y!=NULL){
+                //     ListNode *x = y;
+                //     cout<<x->val<<endl;
+                //     y=y->next;
+                //     delete x;
+                // }
+                head=curr;
                 mp.clear();
+                continue;
             }
             else if(mp.find(sum)!=mp.end()){
                 ListNode *temp = mp[sum]->next;
                 int tt = sum+temp->val;
                 while(temp!=curr){
                     mp.erase(tt);
+                    ListNode *x=temp;
                     temp=temp->next;
                     tt+=temp->val;
+                    delete x;
                 }
                 mp[sum]->next=curr->next;
 
