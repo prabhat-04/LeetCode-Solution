@@ -24,7 +24,7 @@ class Solution {
 public:
     ListNode* help(vector<ListNode*> &lists,int l,int r){
         if(l==r) return lists[l];
-        if(l==r-1) return mergeTwoLists(lists[l],lists[r]);
+        // if(l==r-1) return mergeTwoLists(lists[l],lists[r]);
         int mid = (l+r)/2;
         return mergeTwoLists(help(lists,l,mid),help(lists,mid+1,r));
     }
@@ -32,14 +32,5 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.size()==0) return NULL;
         return help(lists,0,lists.size()-1);
-        // if(list.size())
-        // ListNode *ans;
-        // while(lists.size()>1){
-        //     ans = mergeTwoLists(lists[lists.size()-1],lists[lists.size()-2]);
-        //     lists.pop_back();
-        //     lists.pop_back();
-        //     lists.push_back(ans);
-        // }
-        // return lists[0];
     }
 };
