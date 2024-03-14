@@ -20,47 +20,19 @@ class Solution {
             list2->next = mergeTwoLists(list1,list2->next);
             return list2;
         }
-
-        // ListNode* ptr,*head ;
-        // if(list1->val <=list2->val){
-        //     ptr=list1;
-        //     head=list1;
-        //     list1=list1->next;
-        // }
-        // else{
-        //     ptr=list2;
-        //     head=list2;
-        //     list2=list2->next;
-        // }
-
-        // while(list1 && list2){
-        //     if(list1->val <=list2->val){
-        //         ptr->next=list1;
-        //         list1=list1->next;
-        //     }
-        //     else{
-        //         ptr->next=list2;
-        //         list2=list2->next;
-        //     }
-        //     ptr=ptr->next;
-        // }
-        // if(list1)
-        //     ptr->next=list1;
-        // if(list2)
-        //     ptr->next=list2;
-        // return head;
-
     }
 public:
+    ListNode* help(vector<ListNode*> &lists,int l,int r){
+        if(l==r) return lists[l];
+        if(l==r-1) return mergeTwoLists(lists[l],lists[r]);
+        int mid = (l+r)/2;
+        return mergeTwoLists(help(lists,l,mid),help(lists,mid+1,r));
+    }
+
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.size()==0) return NULL;
-        if(lists.size()==1) return lists[0];
-        ListNode *x = lists[lists.size()-1];
-        ListNode *y = lists[lists.size()-2];
-        lists.pop_back();
-        lists.pop_back();
-        lists.push_back(mergeTwoLists(x,y));
-        return mergeKLists(lists);
+        return help(lists,0,lists.size()-1);
+        // if(list.size())
         // ListNode *ans;
         // while(lists.size()>1){
         //     ans = mergeTwoLists(lists[lists.size()-1],lists[lists.size()-2]);
