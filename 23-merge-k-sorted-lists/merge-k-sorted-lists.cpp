@@ -54,13 +54,20 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.size()==0) return NULL;
-        ListNode *ans;
-        while(lists.size()>1){
-            ans = mergeTwoLists(lists[lists.size()-1],lists[lists.size()-2]);
-            lists.pop_back();
-            lists.pop_back();
-            lists.push_back(ans);
-        }
-        return lists[0];
+        if(lists.size()==1) return lists[0];
+        ListNode *x = lists[lists.size()-1];
+        ListNode *y = lists[lists.size()-2];
+        lists.pop_back();
+        lists.pop_back();
+        lists.push_back(mergeTwoLists(x,y));
+        return mergeKLists(lists);
+        // ListNode *ans;
+        // while(lists.size()>1){
+        //     ans = mergeTwoLists(lists[lists.size()-1],lists[lists.size()-2]);
+        //     lists.pop_back();
+        //     lists.pop_back();
+        //     lists.push_back(ans);
+        // }
+        // return lists[0];
     }
 };
