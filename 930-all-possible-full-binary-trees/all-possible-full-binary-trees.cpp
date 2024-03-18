@@ -10,15 +10,16 @@
  * };
  */
 class Solution {
+    unordered_map<int,vector<TreeNode*>> mp;
 public:
-    // unordered_map<int,vector<TreeNode*>> memo;
     vector<TreeNode*> allPossibleFBT(int n) {
         if(n%2==0)
             return {};
         if(n==1)
             return {new TreeNode()};
-        // if(memo.find(n)!=memo.end())
-        //     return memo[n];
+        if(mp.find(n)!=mp.end()){
+            return mp[n];
+        }
         vector<TreeNode*> res;
         for(int i=1;i<n;i+=2){
             vector<TreeNode*> left = allPossibleFBT(i);
@@ -31,7 +32,6 @@ public:
                 }
             }
         }
-        // return memo[n] = res;
-        return res;
+        return mp[n]=res;
     }
 };
