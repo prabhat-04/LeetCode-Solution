@@ -1,4 +1,11 @@
 class Solution {
+    int speed = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    return 0;
+}();
+
 public:
     int leastInterval(vector<char>& tasks, int n) {
         unordered_map<char,int> mp;
