@@ -30,8 +30,6 @@ public:
             fast=fast->next->next;
         }
         ListNode* hh=reverse(slow);
-        // prev->next=NULL;
-        // cout<<hh->val;
         while(head!=NULL && hh!=NULL){
             if(head->val!=hh->val) return false;
             head=head->next;
