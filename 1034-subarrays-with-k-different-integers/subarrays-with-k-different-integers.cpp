@@ -17,6 +17,8 @@ public:
     }
 
     int subarraysWithKDistinct(vector<int>& nums, int k) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
         return helper(nums,k) - helper(nums,k-1);
     }
 };
