@@ -11,8 +11,7 @@
  */
 class Solution {
 public:
-
-int maxPath(TreeNode* root, int &maxi){
+    int maxPath(TreeNode* root, int &maxi){
     if(root == NULL) return 0;
 
     int lh = max(0, maxPath(root->left, maxi));
