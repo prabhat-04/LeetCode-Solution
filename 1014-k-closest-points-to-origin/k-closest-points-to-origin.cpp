@@ -1,7 +1,7 @@
 class Solution {
     static bool cmp(vector<int>& a, vector<int>& b) {
-        double dis1 = sqrt(double(a[0] * a[0]) + (a[1] * a[1]));
-        double dis2 = sqrt(double(b[0] * b[0]) + (b[1] * b[1]));
+        double dis1 = (double(a[0] * a[0]) + (a[1] * a[1]));
+        double dis2 = (double(b[0] * b[0]) + (b[1] * b[1]));
         if (dis1 < dis2)
             return true;
         return false;
