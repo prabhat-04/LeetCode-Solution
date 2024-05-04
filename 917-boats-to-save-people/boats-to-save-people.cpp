@@ -4,7 +4,7 @@ public:
         sort(people.begin(),people.end());
         int i=0,j=people.size()-1;
         int ans=0;
-        while(i<j){
+        while(i<=j){
             ans++;
             if(people[i]+people[j]>limit) j--;
             else{
@@ -12,7 +12,7 @@ public:
                 j--;
             }
         }
-        if(i==j) ans++;
+        // if(i==j) ans++;
         return ans;
     }
 };
