@@ -6,9 +6,10 @@ public:
         double curr = 0;
         vector<pair<double,int>> vec;
         for(int i=0;i<n;i++){
-            vec.push_back({static_cast<double>(wage[i])/quality[i],quality[i]});
+            vec.emplace_back(static_cast<double>(wage[i])/quality[i],quality[i]);
+            
         }
-        sort(vec.begin(),vec.end());
+        ranges::sort(vec);
         priority_queue<int> pq;
         for(int i=0;i<n;i++){
             pq.push(vec[i].second);
