@@ -1,6 +1,9 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
         unordered_map<int,int> mp;
         int curr=0;
         int ans=0;
