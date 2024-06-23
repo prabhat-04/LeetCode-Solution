@@ -1,6 +1,10 @@
+#pragma GCC optimize("O3","unroll-loops")
 class Solution {
 public:
     int longestSubarray(vector<int>& nums, int limit) {
+         ios::sync_with_stdio(false);
+        cin.tie(0);
+        cout.tie(0);
         deque<int> maxDeque, minDeque;
         int i = 0, j = 0;
         int ans = 0;
