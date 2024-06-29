@@ -1,30 +1,45 @@
 class Solution {
 public:
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
-        vector<vector<int>> ans(n);
-        vector<vector<int>> adj(n);
-        for(auto it:edges){
-            adj[it[1]].push_back(it[0]);
+        vector<vector<int>> ancestors(n);
+        vector<vector<int>> adjacencyList(n);
+        
+        for (const auto& edge : edges) {
+            adjacencyList[edge[1]].push_back(edge[0]);
         }
-        for(int i=0;i<n;i++){
-            queue<int> q;
-            q.push(i);
-            vector<bool> vis(n,false);
-            vis[i]=true;
-            while(!q.empty()){
-                auto it = q.front();
-                q.pop();
-                if(it!=i)
-                    ans[i].push_back(it);
-                for(auto t : adj[it]){
-                    if(!vis[t]){
-                    q.push(t);
-                    vis[t]=true;
-                    }
+        
+        for (int node = 0; node < n; ++node) {
+            ancestors[node] = findAncestors(node, adjacencyList, n);
+            sort(ancestors[node].begin(), ancestors[node].end());
+        }
+        
+        return ancestors;
+    }
+
+private:
+    vector<int> findAncestors(int node, const vector<vector<int>>& adjacencyList, int n) {
+        vector<int> result;
+        queue<int> bfsQueue;
+        bfsQueue.push(node);
+        vector<bool> visited(n, false);
+        visited[node] = true;
+        
+        while (!bfsQueue.empty()) {
+            int currentNode = bfsQueue.front();
+            bfsQueue.pop();
+            
+            if (currentNode != node) {
+                result.push_back(currentNode);
+            }
+            
+            for (const auto& neighbor : adjacencyList[currentNode]) {
+                if (!visited[neighbor]) {
+                    bfsQueue.push(neighbor);
+                    visited[neighbor] = true;
                 }
             }
-            sort(ans[i].begin(),ans[i].end());
         }
-        return ans;
+        
+        return result;
     }
 };
