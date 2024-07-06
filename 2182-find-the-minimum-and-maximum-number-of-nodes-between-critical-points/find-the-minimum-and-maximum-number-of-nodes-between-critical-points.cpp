@@ -1,40 +1,40 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     vector<int> nodesBetweenCriticalPoints(ListNode* head) {
         if(!head || !head->next || !head->next->next) return {-1,-1};
-        int first=-1,prev=-1;
-        int index=0;
-        int maxDis=-1,minDis=INT_MAX;
-        ListNode *pre=head,*ptr=head->next;
-        while(ptr->next){
-            ListNode *next = ptr->next;
-            if((ptr->val > pre->val && ptr->val > next->val)||(ptr->val < pre->val && ptr->val < next->val)){
-                if(prev!=-1){
-                    minDis = min(minDis,index-prev);
+        
+        int firstCriticalPoint = -1, prevCriticalPoint = -1;
+        int currentIndex = 0;
+        int maxDistance = -1, minDistance = INT_MAX;
+        
+        ListNode *previousNode = head, *currentNode = head->next;
+        
+        while(currentNode->next) {
+            ListNode *nextNode = currentNode->next;
+            
+            if((currentNode->val > previousNode->val && currentNode->val > nextNode->val) ||
+               (currentNode->val < previousNode->val && currentNode->val < nextNode->val)) {
+                   
+                if(prevCriticalPoint != -1) {
+                    minDistance = min(minDistance, currentIndex - prevCriticalPoint);
                 }
-                if(first!=-1){
-                    maxDis = index - first;
+                
+                if(firstCriticalPoint != -1) {
+                    maxDistance = currentIndex - firstCriticalPoint;
                 }
-                if(first==-1)
-                    first=index;
-                prev = index;
+                
+                if(firstCriticalPoint == -1)
+                    firstCriticalPoint = currentIndex;
+                    
+                prevCriticalPoint = currentIndex;
             }
-            index++;
-            pre = ptr;
-            ptr = ptr->next;
+            
+            currentIndex++;
+            previousNode = currentNode;
+            currentNode = currentNode->next;
         }
-        if(minDis==INT_MAX) return {-1,-1};
-        return {minDis,maxDis};
-
+        
+        if(minDistance == INT_MAX) return {-1, -1};
+        return {minDistance, maxDistance};
     }
 };
