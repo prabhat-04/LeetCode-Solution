@@ -14,19 +14,20 @@ public:
     vector<int> postorderTraversal(TreeNode* root) {
         if(!root) return {};
         vector<int> ans;
-        stack<TreeNode*> st;
-        stack<int> tt;
-        st.push(root);
+        stack<pair<TreeNode*,bool>> st;
+        st.push({root,false});
         while(!st.empty()){
             auto curr = st.top();
             st.pop();
-            tt.push(curr->val);
-            if(curr->left) st.push(curr->left);
-            if(curr->right) st.push(curr->right);
-        }
-        while(!tt.empty()){
-            ans.push_back(tt.top());
-            tt.pop();
+            if(curr.second){
+                ans.push_back(curr.first->val);
+            }
+            else{
+                st.push({curr.first,true});
+                if(curr.first->right) st.push({curr.first->right,false});
+                if(curr.first->left) st.push({curr.first->left,false});
+                
+            }
         }
         return ans;
     }
