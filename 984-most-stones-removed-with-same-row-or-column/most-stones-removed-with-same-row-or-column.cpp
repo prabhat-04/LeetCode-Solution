@@ -1,33 +1,48 @@
 class Solution {
-    void dfs(vector<vector<int>> &adj,int node,vector<bool> &vis){
-        vis[node] = true;
-        for(auto &it:adj[node]){
-            if(!vis[it])
-                dfs(adj,it,vis);
-        }
-    }
+    class UnionFind{
+        public:
+            vector<int> parent;
+            int count;
+
+            UnionFind(int n){
+                parent.resize(n,-1);
+                count=n;
+            }
+
+            int find(int node){
+                if(parent[node]==-1){
+                    return node;
+                }
+
+                return parent[node] = find(parent[node]);
+            }
+
+            void unionNodes(int n1,int n2){
+                int root1 = find(n1);
+                int root2 = find(n2);
+
+                if(root1==root2){
+                    return;
+                }
+
+                count--;
+                parent[root1]=root2;
+            }
+    };
 public:
     int removeStones(vector<vector<int>>& stones) {
         int n = stones.size();
-        vector<vector<int>> adj(n);
+        UnionFind uf(n);
+
         for(int i=0;i<n;i++){
             for(int j=i+1;j<n;j++){
-                if(stones[i][0]==stones[j][0] || stones[i][1]==stones[j][1]){
-                    adj[i].push_back(j);
-                    adj[j].push_back(i);
+                if (stones[i][0] == stones[j][0] ||stones[i][1] == stones[j][1]) {
+                    uf.unionNodes(i, j);
                 }
             }
         }
 
-        vector<bool> vis(n,false);
-        int cnt =0;
-        for(int i=0;i<n;i++){
-            if(!vis[i]){
-                cnt++;
-                dfs(adj,i,vis);
-            }
-        }
-        return n - cnt;
-
+        return n - uf.count;
     }
 };
+
