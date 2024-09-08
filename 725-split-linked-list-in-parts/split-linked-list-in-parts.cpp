@@ -36,7 +36,7 @@ public:
                 ptr = ptr->next;
                 temp--;
             }
-            if(prev)
+            // if(prev)
                 prev->next=NULL;
             i++;
         }
