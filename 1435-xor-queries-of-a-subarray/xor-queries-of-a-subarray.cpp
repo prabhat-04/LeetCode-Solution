@@ -8,7 +8,6 @@ public:
         prefix[0] = arr[0];
         for(int i=1;i<arr.size();i++){
             prefix[i] = arr[i] ^ prefix[i-1];
-            // cout<<prefix[i]<<endl;
         }
         for(auto &it : queries){
             if(it[0]==0)
@@ -19,3 +18,10 @@ public:
         return ans;
     }
 };
+
+int speed = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    return 0;
+}();
