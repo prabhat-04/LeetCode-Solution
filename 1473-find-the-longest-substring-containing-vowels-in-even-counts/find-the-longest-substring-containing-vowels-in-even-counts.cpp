@@ -2,6 +2,8 @@ class Solution {
 public:
     int findTheLongestSubstring(string s) {
         vector<int>prefix(s.size());
+        int ans = 0;
+        unordered_map<int,int> mp;
         int bit =0;
         for(int i=0;i<s.size();i++){
             if(s[i]=='a'){
@@ -15,11 +17,7 @@ public:
                 bit^=(1<<1);
             else if(s[i]=='u')
                 bit^=1;
-            prefix[i]=bit;       
-        }
-        int ans = 0;
-        unordered_map<int,int> mp;
-        for(int i=0;i<prefix.size();i++){
+            prefix[i]=bit; 
             if(mp.find(prefix[i])!=mp.end()){
                 ans = max(ans,i-mp[prefix[i]]);
             }
@@ -28,7 +26,7 @@ public:
             }
             if(prefix[i]==0){
                 ans=max(ans,i+1);
-            }
+            }      
         }
         return ans;
     }
