@@ -10,8 +10,8 @@ public:
     int findMinDifference(vector<string>& timePoints) {
         vector<bool> minutes(24 * 60, false);
         for (string time : timePoints) {
-            int h = stoi(time.substr(0, 2));
-            int m = stoi(time.substr(3));
+            int h = (time[0]-'0')*10 + (time[1]-'0');
+            int m = (time[3]-'0')*10 + (time[4]-'0');
             int min = h * 60 + m;
             if (minutes[min]) return 0;
             minutes[min] = true;
