@@ -3,7 +3,11 @@ class Solution {
         if(num>n) return;
         ans.push_back(num);
         for(int i=0;i<=9;i++){
-            dfs(ans,num*10+i,n);
+            int next = num*10+i;
+            if(next<=n)
+                dfs(ans,next,n);
+            else
+                break;
         }
     }
 public:
