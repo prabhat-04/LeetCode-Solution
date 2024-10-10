@@ -1,8 +1,11 @@
 class Solution {
 public:
     int maxWidthRamp(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         stack<int> st;
-        for(int i=0;i<nums.size();i++){
+        st.push(0);
+        for(int i=1;i<nums.size();i++){
             if(st.empty() || (nums[st.top()]>nums[i])){
                 st.push(i);
             }
@@ -14,6 +17,7 @@ public:
                 ans = max(ans,i-st.top());
                 st.pop();
             }
+            if(st.empty()) break;
         }
         return ans;
     }
