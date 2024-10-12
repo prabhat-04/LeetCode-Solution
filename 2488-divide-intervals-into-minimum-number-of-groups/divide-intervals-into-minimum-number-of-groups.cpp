@@ -1,14 +1,20 @@
 class Solution {
 public:
     int minGroups(vector<vector<int>>& intervals) {
-        map<int,int> mp;
+        int start = INT_MAX;
+        int end = INT_MIN;
         for(auto it:intervals){
-            mp[it[0]]++;
-            mp[it[1]+1]--;
+            start = min(start,it[0]);
+            end = max(end,it[1]);
         }
-        int curr=0,ans=0;
-        for(auto it:mp){
-            curr+=it.second;
+        vector<int> vec(end+2,0);
+        for(auto it:intervals){
+            vec[it[0]]++;
+            vec[it[1]+1]--;
+        }
+        int ans =0,curr=0;
+        for(int i=start;i<=end;i++){
+            curr += vec[i];
             ans = max(ans,curr);
         }
         return ans;
