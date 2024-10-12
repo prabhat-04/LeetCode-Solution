@@ -1,14 +1,13 @@
 class Solution {
 public:
     int minGroups(vector<vector<int>>& intervals) {
-        vector<pair<int,int>> vec;
+        map<int,int> mp;
         for(auto it:intervals){
-            vec.push_back({it[0],1});
-            vec.push_back({it[1]+1,-1});
+            mp[it[0]]++;
+            mp[it[1]+1]--;
         }
-        sort(vec.begin(),vec.end());
-        int ans = 0,curr=0;
-        for(auto it:vec){
+        int curr=0,ans=0;
+        for(auto it:mp){
             curr+=it.second;
             ans = max(ans,curr);
         }
