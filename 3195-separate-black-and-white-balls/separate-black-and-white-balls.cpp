@@ -8,15 +8,13 @@ int speed = []() {
 class Solution {
 public:
     long long minimumSteps(string s) {
-        int zero=0;
-        for(char c:s){
-            if(c=='0') zero++;
-        }
+        int curr=0;
         long long ans =0;
-        for(char c:s){
-            if(c=='0') zero--;
-            else{
-                ans += zero;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='0'){
+                ans += i-curr;
+                curr++;
+
             }
         }
         return ans;
