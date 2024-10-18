@@ -9,20 +9,23 @@ int speed = []() {
 class Solution {
 public:
     int countMaxOrSubsets(vector<int>& nums) {
-        int n = nums.size();
-        int maxi = 0;
-        for(auto &it:nums){
-            maxi |= it;
-        }
-        int ans =0,total=1<<n;
-        for(int i=0;i<total;i++){
-            int curr=0;
-            for(int j=0;j<n;j++){
-                if((i>>j & 1)==1)
-                    curr |= nums[j];
+        int max = 0;
+        vector<int> dp(1 << 17, 0);
+
+        // Initialize the empty subset
+        dp[0] = 1;
+
+        // Iterate through each number in the input array
+        for (int num : nums) {
+            for (int i = max; i >= 0; i--) {
+                // For each existing subset, create a new subset by including
+                // the current number
+                dp[i | num] += dp[i];
             }
-            if(curr==maxi) ans++;
+            // Update the maximum OR value
+            max |= num;
         }
-        return ans;
+
+        return dp[max];
     }
 };
