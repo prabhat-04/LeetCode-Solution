@@ -1,42 +1,39 @@
 class Solution {
-    bool helper(string& exp,int& ind){
-        char curr = exp[ind++];
-        if(curr=='t') return true;
-        if(curr =='f') return false;
-        if(curr=='!'){
-            ind++;
-            bool res = !helper(exp,ind);
-            ind++;
-            return res;
-        }
-        vector<bool> val;
-        ind++;
-        while(exp[ind]!=')'){
-            if(exp[ind]!=','){
-                val.push_back(helper(exp,ind));
+    char helper(char op,vector<char> &val){
+        if(op =='!') return val[0]=='t'?'f':'t';
+        if(op == '&'){
+            for(char v:val){
+                if(v=='f') return 'f';
             }
-            else
-                ind++;
+            return 't';
         }
-        ind++;
-        if(curr=='&'){
-            for(bool b :val){
-                if(!b) return false;
+        if(op =='|'){
+            for(char v:val){
+                if(v=='t') return 't';
             }
-            return true;
+            return 'f';
         }
-        if(curr=='|'){
-            for(bool v:val){
-                if(v) return true;
-            }
-            return false;
-        }
-        return false;
-        
+        return 'f';
     }
 public:
-    bool parseBoolExpr(string expression) {
-        int ind =0;
-        return helper(expression,ind);
+    bool parseBoolExpr(string exp) {
+        stack<char> st;
+        for(char c:exp){
+            if(c==')'){
+                vector<char> val;
+                while(st.top()!='('){
+                    val.push_back(st.top());
+                    st.pop();
+                }
+                st.pop();
+                char op = st.top();
+                st.pop();
+                char res = helper(op,val);
+                st.push(res);
+            }
+            else if(c!=',')
+                st.push(c);
+        }
+        return st.top()=='t';
     }
 };
