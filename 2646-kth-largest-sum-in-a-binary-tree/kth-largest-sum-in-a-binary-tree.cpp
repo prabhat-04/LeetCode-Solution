@@ -26,12 +26,10 @@ public:
                 if(curr->left) q.push(curr->left);
                 if(curr->right) q.push(curr->right);
             }
-            if(pq.size()<k)
-                pq.push(sum);
-            else if(sum > pq.top()){
+            pq.push(sum);
+            if(pq.size()>k)
                 pq.pop();
-                pq.push(sum);
-            }
+            
         }
         if(pq.size()<k) return -1;
         return pq.top();
