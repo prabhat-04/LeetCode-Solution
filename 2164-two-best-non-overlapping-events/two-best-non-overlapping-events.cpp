@@ -1,16 +1,20 @@
 class Solution {
 public:
-    int maxTwoEvents(vector<vector<int>>& arr) {
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
-        sort(arr.begin(),arr.end());
-        int val=0,ans=0;
-        for(auto &it:arr){
-            while(!pq.empty() && pq.top().first < it[0]){
-               val = max(val,pq.top().second);
-               pq.pop(); 
+    int maxTwoEvents(vector<vector<int>>& events) {
+        vector<array<int,3>> times;
+        for(auto &it:events){
+            times.push_back({it[0],1,it[2]});
+            times.push_back({it[1]+1,0,it[2]});
+        }
+        sort(begin(times),end(times));
+        int ans =0,val=0;
+        for(auto &it:times){
+            if(it[1]){
+                ans = max(ans,val+it[2]);
             }
-            ans = max(ans,val+it[2]);
-            pq.push({it[1],it[2]});
+            else{
+                val = max(val,it[2]);
+            }
         }
         return ans;
     }
