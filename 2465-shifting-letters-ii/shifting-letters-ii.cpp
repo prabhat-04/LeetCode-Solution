@@ -13,11 +13,10 @@ public:
                 vec[it[1]+1]+=1;
             }
         }
-        for (int i = 1; i < s.size(); ++i) {
-            vec[i] += vec[i - 1];
-        }
 
         for (int i = 0; i < s.size(); ++i) {
+            if(i>0)
+                vec[i] += vec[i - 1];
             int shift = vec[i] % 26; 
             int newChar = s[i] + shift;
 
